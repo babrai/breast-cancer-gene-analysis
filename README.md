@@ -75,15 +75,3 @@ Using basic statistical and visualization tools, I aim to:
 📌 These top probes show consistent and statistically significant differences  
 between normal and cancer samples, making them useful indicators for classification or diagnostics.
 
----
-
-## 📁 Project Structure
-
-breast-cancer-gene-expression/
-├── data/                               
-├── notebooks/
-├── images/                    
-├── README.md                   
-├── requirements.txt           
-└── .gitignore                
-
