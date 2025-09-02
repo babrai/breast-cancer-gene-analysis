@@ -80,12 +80,10 @@ between normal and cancer samples, making them useful indicators for classificat
 ## 📁 Project Structure
 
 breast-cancer-gene-expression/
-├── data/
-│ ├── raw/
-│ └── processed/
+├── data/                               
 ├── notebooks/
-│ ├── 01-eda.ipynb
-│ └── 02-differential-analysis.ipynb
-├── images/
-├── README.md
-└── requirements.txt
+├── images/                    
+├── README.md                   
+├── requirements.txt           
+└── .gitignore                
+
