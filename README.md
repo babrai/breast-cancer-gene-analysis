@@ -1,123 +1,127 @@
 # 🧬 Breast Cancer Gene Expression Analysis
 
-This project analyzes gene expression data to identify the most differentially expressed features between **cancer** and **normal** breast tissue samples.
-
-Analysis is conducted in a single notebook:  
-📒 [`notebooks/breast-cancer-gene-expression-analysis.ipynb`](notebooks/breast-cancer-gene-expression-analysis.ipynb)
+This repository contains an analysis of gene expression data from breast cancer tissue and normal samples. The goal is to identify genes that significantly differentiate between cancerous and non-cancerous states and understand their biological roles.
 
 ---
 
-## 🎯 Objective
+## 1. Dataset Overview
 
-To identify probe sets (gene expression features) that most clearly distinguish cancer from normal tissue, using basic data analysis, statistical testing, and visualization techniques.
+The dataset is derived from the [CUMIDA Breast Cancer Gene Expression Dataset (GSE45827)](https://www.kaggle.com/datasets/brunogrisci/breast-cancer-gene-expression-cumida).  
+It contains:
 
----
+- **151 samples**: both normal tissue and various cancer subtypes
+- **54,000+ probes** (Affymetrix probe IDs like `207175_at`, `217428_s_at`)
+- Column `type`: denotes group (`normal`, `cell_line`, `basal`, `HER`, `luminal_A`, `luminal_B`)
 
-## 📦 Dataset
-
-- **Source**: [Kaggle: CUMIDA Breast Cancer Dataset](https://www.kaggle.com/datasets/brunogrisci/breast-cancer-gene-expression-cumida)
-- **File**: `Breast_GSE45827.csv`
-- **Samples**: 151
-- **Features**: ~54,000 probe sets (e.g., `1007_s_at`, `1053_at`)
-- **Groups**:  
-  - `normal` — healthy tissue  
-  - `cancer` — all tumor subtypes (excluding `cell_line`)
+🎯 Only normal vs cancerous samples were used in the current analysis.
 
 ---
 
-## 📈 Analysis Pipeline
+## 2. Exploratory Data Analysis (EDA)
 
-### 🧬 1. Dataset Preparation
+### Sample Distribution
+Count of samples per group was visualized to confirm class balance.
 
-- Removed lab-grown `cell_line` samples
-- Created binary column `group` → `normal` / `cancer`
-- Checked class distribution
-
-**📊 Sample Count by Group**  
-Distribution of samples across `normal` and `cancer` categories.  
-![Sample Count](images/sample_count_per_group.png)
+![Sample Count Per Group](images/sample_count_per_group.png)
 
 ---
 
-### 📊 2. Exploratory Data Analysis
+## 3. Differential Expression Analysis
 
-- Visualized expression levels of selected probes
-- Calculated group-wise averages for each probe
-- Computed **log2 fold change**
-- Applied **independent t-tests** to each probe
+Each probe's expression was compared between `normal` and `cancer` groups using:
 
-Results were aggregated into a summary table.
+- Group-wise mean
+- Log2 fold change
+- Independent t-tests
 
-📁 [`data/differential_expression_results.csv`](data/differential_expression_results.csv)
+Top differentially expressed probes were identified by absolute `log2FC` and statistical significance.
 
-This file contains group-level averages for each probe set, along with log2 fold change and significance values based on independent t-tests.
+📁 Full Table: [`data/differential_expression_results.csv`](data/differential_expression_results.csv)
 
-**🧾 Preview of Differential Expression Results**
+**🔍 Preview of Differential Results**
 
-| Probe ID       | Mean (Normal) | Mean (Cancer) | Log2FC   | P-value       |
-|----------------|----------------|----------------|----------|----------------|
-| 207175_at      | 11.130         | 4.737          | -1.232   | 2.5e-05        |
-| 217428_s_at    | 4.002          | 8.994          | +1.168   | 3.4e-39        |
-| 1552509_a_at   | 7.802          | 3.485          | -1.163   | 4.8e-04        |
-| 209613_s_at    | 10.089         | 4.598          | -1.134   | 9.3e-05        |
-| 209773_s_at    | 4.106          | 8.945          | +1.123   | 2.6e-10        |
-
+| probe_id     | mean_normal | mean_cancer | log2FC   | p_value   |
+|--------------|-------------|-------------|----------|-----------|
+| 207175_at    | 11.13       | 4.73        | -1.23    | 2.50e-05  |
+| 217428_s_at  | 4.00        | 8.99        | +1.16    | 3.44e-39  |
+| ...          | ...         | ...         | ...      | ...       |
 
 ---
 
-### 📦 3. Visualization of Top Features
+### Gene Expression Boxplots
 
-Top 5 probe sets with strongest expression differences (based on `abs(log2FC)`) were selected and visualized:
+Top probes were visualized using boxplots to illustrate differences in expression between groups.
 
-**🧪 Boxplots of Top 5 Differentially Expressed Probes**  
-Each plot compares expression levels between `normal` and `cancer` for a single probe set.
+Example:
 
-| Probe ID         | Visualization |
-|------------------|---------------|
-| `207175_at`      | ![Boxplot](images/boxplot_207175_at.png) |
-| `217428_s_at`    | ![Boxplot](images/boxplot_217428_s_at.png) |
-| `1552509_a_at`   | ![Boxplot](images/boxplot_1552509_a_at.png) |
-| `209613_s_at`    | ![Boxplot](images/boxplot_209613_s_at.png) |
-| `209773_s_at`    | ![Boxplot](images/boxplot_209773_s_at.png) |
+- `207175_at` (downregulated)
+- `217428_s_at` (upregulated)
+
+![Boxplot 1](images/boxplot_207175_at.png)  
+![Boxplot 2](images/boxplot_217428_s_at.png)
 
 ---
 
-### 🧠 4. PCA Visualization
+## 4. Dimensionality Reduction (PCA)
 
-PCA (Principal Component Analysis) was applied using the top 100 most differential features to explore class separation in 2D space.
+PCA was performed using top 100 probes by absolute `log2FC`:
 
-**📌 PCA on Top 100 Probes**  
-Each point represents a sample, colored by group (`cancer` / `normal`).
+- PC1 separates normal and cancer groups
+- Shows the discriminative power of selected features
 
 ![PCA](images/pca_top100_log2fc.png)
 
 ---
 
-### 📄 5. Final Summary & Export
+## 5. Gene Annotation & Mapping
 
-The top 20 probe sets with the strongest differences were extracted, sorted, rounded and exported:
+To provide biological meaning, probes were mapped to gene symbols using the [GPL570 annotation file](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GPL570).
 
-📁 [`data/top20_differential_probes.csv`](data/top20_differential_probes.csv)
+Each probe was linked to:
 
-This table serves as the final ranked list of features most relevant for distinguishing cancer from normal tissue.
+- Gene symbol
+- Gene title
+- Functional description (if available)
 
-**🧾 Preview of Final Table**  
-Each row represents a probe set with its expression values, log2 fold change, and significance.
+📁 Annotated Table: [`data/annotated_differential_results.csv`](data/annotated_differential_results.csv)
 
-| Probe ID       | Mean (Normal) | Mean (Cancer) | Log2FC  | P-value  |
-|----------------|----------------|----------------|--------|----------|
-| 207175_at      | 11.130         | 4.737          | -1.232 | 0.0      |
-| 217428_s_at    | 4.002          | 8.994          | +1.168 | 0.0      |
-| 1552509_a_at   | 7.802          | 3.485          | -1.163 | 0.0      |
-| 209613_s_at    | 10.089         | 4.598          | -1.134 | 0.0      |
-| 209773_s_at    | 4.106          | 8.945          | +1.123 | 0.0      |
+**🔍 Preview of Annotated Results**
+
+| probe_id     | gene_symbol | gene_title                                     | log2FC  | p_value |
+|--------------|-------------|------------------------------------------------|---------|---------|
+| 207175_at    | DDR1        | discoidin domain receptor tyrosine kinase 1    | -1.23   | 2.50e-05|
+| 217428_s_at  | FOXQ1       | forkhead box Q1                                | +1.16   | 3.44e-39|
+| ...          | ...         | ...                                            | ...     | ...     |
 
 ---
 
-## 🚧 Next Steps
+## 6. Probe-to-Gene Redundancy
 
-- Build an interactive dashboard in **Looker**
-- Add probe-to-gene annotation (e.g., Ensembl or NCBI)
-- Extend to classification or biomarker selection
-- Update README with dashboard visuals
+Some genes are represented by multiple probes. These were identified to assess robustness and redundancy in differential expression.
 
+📁 Summary: [`data/repeated_gene_symbols.csv`](data/repeated_gene_symbols.csv)
+
+**🔁 Preview of Repeated Genes**
+
+| gene_symbol                         | count |
+|-------------------------------------|-------|
+| HFE                                 | 15    |
+| TCF3                                | 13    |
+| LOC100506403 /// RUNX1              | 13    |
+| CD44                                | 13    |
+
+---
+
+## ✅ Next Steps: Interactive Dashboard
+
+The next phase will involve building an interactive dashboard in Looker Studio to:
+
+- Browse differential expression results
+- Search genes and explore log2FC
+- Filter by biological category or GO terms
+
+---
+
+## 📜 License
+
+This project is released under the MIT License.
