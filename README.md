@@ -91,8 +91,13 @@ This table serves as the final ranked list of features most relevant for disting
 **🧾 Preview of Final Table**  
 Each row represents a probe set with its expression values, log2 fold change, and significance.
 
-![Top 20 Table Preview](data/top20_differential_probes.csv)
-
+| Probe ID       | Mean (Normal) | Mean (Cancer) | Log2FC  | P-value  |
+|----------------|----------------|----------------|--------|----------|
+| 207175_at      | 11.130         | 4.737          | -1.232 | 0.0      |
+| 217428_s_at    | 4.002          | 8.994          | +1.168 | 0.0      |
+| 1552509_a_at   | 7.802          | 3.485          | -1.163 | 0.0      |
+| 209613_s_at    | 10.089         | 4.598          | -1.134 | 0.0      |
+| 209773_s_at    | 4.106          | 8.945          | +1.123 | 0.0      |
 
 ---
 
