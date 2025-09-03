@@ -91,7 +91,7 @@ This table serves as the final ranked list of features most relevant for disting
 **🧾 Preview of Final Table**  
 Each row represents a probe set with its expression values, log2 fold change, and significance.
 
-![Top 20 Table Preview](images/top20_table_preview.png)
+![Top 20 Table Preview](data/top20_differential_probes.csv)
 
 
 ---
