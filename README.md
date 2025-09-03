@@ -50,8 +50,7 @@ Results were aggregated into a summary table.
 
 📁 [`data/differential_expression_results.csv`](data/differential_expression_results.csv)
 
-This file contains group-level averages for each probe set, along with log2 fold change  
-and significance values based on independent t-tests.
+This file contains group-level averages for each probe set, along with log2 fold change and significance values based on independent t-tests.
 
 **🧾 Preview of Differential Expression Results**
 
