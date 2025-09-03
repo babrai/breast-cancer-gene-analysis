@@ -112,16 +112,6 @@ Some genes are represented by multiple probes. These were identified to assess r
 
 ---
 
-## ✅ Next Steps: Interactive Dashboard
-
-The next phase will involve building an interactive dashboard in Looker Studio to:
-
-- Browse differential expression results
-- Search genes and explore log2FC
-- Filter by biological category or GO terms
-
----
-
 ## 📜 License
 
 This project is released under the MIT License.
