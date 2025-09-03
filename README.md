@@ -135,8 +135,7 @@ To support downstream visualization and interactive analysis, a final **master t
 | `redundant`        | Boolean flag if gene is represented by multiple probes        |
 | `group`            | Expression direction: `up`, `down`, or `neutral`              |
 
-📁 **File**: `master_table_looker_ready.csv`  
-✅ This file is ready for import into Looker Studio or other visualization tools.
+📁 **File**: [`master_table_looker_ready.csv`](`master_table_looker_ready.csv`)
 
 ---
 
