@@ -1,7 +1,6 @@
 # 🧬 Breast Cancer Gene Expression Analysis
 
-This project analyzes gene expression data to identify the most differentially expressed features  
-between **cancer** and **normal** breast tissue samples.
+This project analyzes gene expression data to identify the most differentially expressed features between **cancer** and **normal** breast tissue samples.
 
 Analysis is conducted in a single notebook:  
 📒 [`notebooks/breast-cancer-gene-expression-analysis.ipynb`](notebooks/breast-cancer-gene-expression-analysis.ipynb)
@@ -10,8 +9,7 @@ Analysis is conducted in a single notebook:
 
 ## 🎯 Objective
 
-To identify probe sets (gene expression features) that most clearly distinguish cancer from normal tissue,  
-using basic data analysis, statistical testing, and visualization techniques.
+To identify probe sets (gene expression features) that most clearly distinguish cancer from normal tissue, using basic data analysis, statistical testing, and visualization techniques.
 
 ---
 
@@ -73,8 +71,7 @@ Each plot compares expression levels between `normal` and `cancer` for a single 
 
 ### 🧠 4. PCA Visualization
 
-PCA (Principal Component Analysis) was applied using the top 100 most differential features  
-to explore class separation in 2D space.
+PCA (Principal Component Analysis) was applied using the top 100 most differential features to explore class separation in 2D space.
 
 **📌 PCA on Top 100 Probes**  
 Each point represents a sample, colored by group (`cancer` / `normal`).
