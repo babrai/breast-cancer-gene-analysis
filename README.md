@@ -91,6 +91,12 @@ The top 20 probe sets with the strongest differences were extracted, sorted, rou
 
 This table serves as the final ranked list of features most relevant for distinguishing cancer from normal tissue.
 
+**🧾 Preview of Final Table**  
+Each row represents a probe set with its expression values, log2 fold change, and significance.
+
+![Top 20 Table Preview](images/top20_table_preview.png)
+
+
 ---
 
 ## 🚧 Next Steps
