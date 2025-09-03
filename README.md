@@ -50,6 +50,20 @@ Results were aggregated into a summary table.
 
 📁 [`data/differential_expression_results.csv`](data/differential_expression_results.csv)
 
+This file contains group-level averages for each probe set, along with log2 fold change  
+and significance values based on independent t-tests.
+
+**🧾 Preview of Differential Expression Results**
+
+| Probe ID       | Mean (Normal) | Mean (Cancer) | Log2FC   | P-value       |
+|----------------|----------------|----------------|----------|----------------|
+| 207175_at      | 11.130         | 4.737          | -1.232   | 2.5e-05        |
+| 217428_s_at    | 4.002          | 8.994          | +1.168   | 3.4e-39        |
+| 1552509_a_at   | 7.802          | 3.485          | -1.163   | 4.8e-04        |
+| 209613_s_at    | 10.089         | 4.598          | -1.134   | 9.3e-05        |
+| 209773_s_at    | 4.106          | 8.945          | +1.123   | 2.6e-10        |
+
+
 ---
 
 ### 📦 3. Visualization of Top Features
