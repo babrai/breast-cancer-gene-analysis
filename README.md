@@ -1,77 +1,102 @@
-# 🧬 Gene Expression Analysis: Cancer vs Normal
+# 🧬 Breast Cancer Gene Expression Analysis
 
-A simple exploratory data analysis (EDA) project using real-world gene expression data  
-to identify features (probes) that differ significantly between **cancer** and **normal** tissue samples.
+This project analyzes gene expression data to identify the most differentially expressed features  
+between **cancer** and **normal** breast tissue samples.
+
+Analysis is conducted in a single notebook:  
+📒 [`notebooks/breast-cancer-gene-expression-analysis.ipynb`](notebooks/breast-cancer-gene-expression-analysis.ipynb)
 
 ---
 
-## 🔍 Project Goal
+## 🎯 Objective
 
-To answer the question:
-
-> **"Which probe sets (features) are most differentially expressed between `cancer` and `normal` samples?"**
-
-Using basic statistical and visualization tools, I aim to:
-
-- Compare mean expression between groups
-- Identify the **top 10 most distinct probes**
-- Visualize the results using **boxplots** and **PCA**
+To identify probe sets (gene expression features) that most clearly distinguish cancer from normal tissue,  
+using basic data analysis, statistical testing, and visualization techniques.
 
 ---
 
 ## 📦 Dataset
 
-- **Source**: [Kaggle – Breast Cancer Gene Expression (CUMIDA)](https://www.kaggle.com/datasets/brunogrisci/breast-cancer-gene-expression-cumida)
+- **Source**: [Kaggle: CUMIDA Breast Cancer Dataset](https://www.kaggle.com/datasets/brunogrisci/breast-cancer-gene-expression-cumida)
 - **File**: `Breast_GSE45827.csv`
 - **Samples**: 151
-- **Features**: ~54,000 probes (e.g., `1007_s_at`, `1053_at`)
-- **Target column**: `type` → contains sample type such as `normal`, `basal`, `luminal_A`, etc.
-
-Сreated a simplified binary column:  
-📁 `group = "normal"` or `"cancer"` (any other type considered cancer)
-
----
-
-## 🛠 Tools & Libraries
-
-- Python 🐍
-- `pandas`, `numpy` – data manipulation
-- `scipy.stats` – t-test
-- `matplotlib`, `seaborn` – plotting
-- `scikit-learn` – PCA
+- **Features**: ~54,000 probe sets (e.g., `1007_s_at`, `1053_at`)
+- **Groups**:  
+  - `normal` — healthy tissue  
+  - `cancer` — all tumor subtypes (excluding `cell_line`)
 
 ---
 
-## 🧪 Analysis Steps
+## 📈 Analysis Pipeline
 
-1. **Data Cleaning & Grouping**
-   - Create binary column `group` (`normal` vs `cancer`)
-   - Check class balance
+### 🧬 1. Dataset Preparation
 
-2. **Descriptive Statistics**
-   - Compute group-wise means for each probe
-   - Calculate log2 Fold Change (log2FC)
+- Removed lab-grown `cell_line` samples
+- Created binary column `group` → `normal` / `cancer`
+- Checked class distribution
 
-3. **Statistical Testing**
-   - Run independent t-tests for all probes
-   - Adjust p-values using Benjamini–Hochberg FDR
-
-4. **Feature Ranking**
-   - Select top-10 most significantly different probes
-   - Export summary table with `log2FC`, p-values, and group means
-
-5. **Visualization**
-   - Boxplots for top-5 probes
-   - PCA plot (2D) showing separation between groups
+**📊 Sample Count by Group**  
+Distribution of samples across `normal` and `cancer` categories.  
+![Sample Count](images/sample_count_per_group.png)
 
 ---
 
-## 📊 Results
+### 📊 2. Exploratory Data Analysis
 
-| Probe ID   | log2FC | p-value | Adj. p-value | mean_normal | mean_cancer |
-|------------|--------|---------|---------------|--------------|--------------|
-| ...        | ...    | ...     | ...           | ...          | ...          |
+- Visualized expression levels of selected probes
+- Calculated group-wise averages for each probe
+- Computed **log2 fold change**
+- Applied **independent t-tests** to each probe
 
-📌 These top probes show consistent and statistically significant differences  
-between normal and cancer samples, making them useful indicators for classification or diagnostics.
+Results were aggregated into a summary table.
+
+📁 [`data/differential_expression_results.csv`](data/differential_expression_results.csv)
+
+---
+
+### 📦 3. Visualization of Top Features
+
+Top 5 probe sets with strongest expression differences (based on `abs(log2FC)`) were selected and visualized:
+
+**🧪 Boxplots of Top 5 Differentially Expressed Probes**  
+Each plot compares expression levels between `normal` and `cancer` for a single probe set.
+
+| Probe ID         | Visualization |
+|------------------|---------------|
+| `207175_at`      | ![Boxplot](images/boxplot_207175_at.png) |
+| `217428_s_at`    | ![Boxplot](images/boxplot_217428_s_at.png) |
+| `1552509_a_at`   | ![Boxplot](images/boxplot_1552509_a_at.png) |
+| `209613_s_at`    | ![Boxplot](images/boxplot_209613_s_at.png) |
+| `209773_s_at`    | ![Boxplot](images/boxplot_209773_s_at.png) |
+
+---
+
+### 🧠 4. PCA Visualization
+
+PCA (Principal Component Analysis) was applied using the top 100 most differential features  
+to explore class separation in 2D space.
+
+**📌 PCA on Top 100 Probes**  
+Each point represents a sample, colored by group (`cancer` / `normal`).
+
+![PCA](images/pca_top100_log2fc.png)
+
+---
+
+### 📄 5. Final Summary & Export
+
+The top 20 probe sets with the strongest differences were extracted, sorted, rounded and exported:
+
+📁 [`data/top20_differential_probes.csv`](data/top20_differential_probes.csv)
+
+This table serves as the final ranked list of features most relevant for distinguishing cancer from normal tissue.
+
+---
+
+## 🚧 Next Steps
+
+- Build an interactive dashboard in **Looker**
+- Add probe-to-gene annotation (e.g., Ensembl or NCBI)
+- Extend to classification or biomarker selection
+- Update README with dashboard visuals
 
