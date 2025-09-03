@@ -135,7 +135,18 @@ To support downstream visualization and interactive analysis, a final **master t
 | `redundant`        | Boolean flag if gene is represented by multiple probes        |
 | `group`            | Expression direction: `up`, `down`, or `neutral`              |
 
-📁 **File**: [`data/master_table_looker_ready.csv`](`data/master_table_looker_ready.csv`)
+📁 **File**: `master_table_looker_ready.csv` 
+
+### 🔍 Preview of Master Table
+
+| probe_id     | Gene Symbol | Gene Title                                     | log2FC  | p_value   | -log10(p) | mean_normal | mean_cancer | redundant | group   |
+|--------------|-------------|------------------------------------------------|---------|-----------|-----------|--------------|--------------|-----------|---------|
+| 207175_at    | ADIPOQ      | adiponectin, C1Q and collagen domain containing| -1.23   | 2.5e-05   | 4.60      | 11.13        | 4.74         | True      | down    |
+| 217428_s_at  | COL10A1     | collagen, type X, alpha 1                      | +1.17   | 3.44e-39  | 38.46     | 4.00         | 8.99         | False     | up      |
+| 1552509_a_at | CD300LG     | CD300 molecule-like family member g            | -1.16   | 4.80e-04  | 3.32      | 7.80         | 3.49         | False     | down    |
+| 209613_s_at  | ADH1B       | alcohol dehydrogenase 1B (class I), beta       | -1.13   | 9.27e-05  | 4.03      | 10.09        | 4.60         | False     | down    |
+| 209773_s_at  | RRM2        | ribonucleotide reductase M2                    | +1.12   | 2.57e-10  | 9.59      | 4.11         | 8.95         | True      | up      |
+
 
 ---
 
