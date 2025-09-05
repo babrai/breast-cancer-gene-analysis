@@ -147,6 +147,28 @@ To support downstream visualization and interactive analysis, a final **master t
 | 209613_s_at  | ADH1B       | alcohol dehydrogenase 1B (class I), beta       | -1.13   | 9.27e-05  | 4.03      | 10.09        | 4.60         | False     | down    |
 | 209773_s_at  | RRM2        | ribonucleotide reductase M2                    | +1.12   | 2.57e-10  | 9.59      | 4.11         | 8.95         | True      | up      |
 
+---
+## 8. Results in Looker Studio
+
+To make the results more accessible and interpretable, the master table was connected to **Looker Studio**.  
+A one-page dashboard was created to highlight key findings.
+
+### 🔹 Volcano Plot
+![Volcano Plot](images/volcano_plot.png)  
+*Scatter plot showing all genes (X = log2FC, Y = –log10 p-value).  
+Right/top = significantly upregulated genes; left/top = significantly downregulated genes.*
+
+### 🔹 Top Genes (Bar Charts)
+![Top Genes Bar Charts](images/bar_chart.png)  
+- **Top Upregulated Genes in Breast Cancer**  
+  *Genes expressed at higher levels in cancer; taller bars = stronger evidence.*  
+
+- **Top Downregulated Genes in Breast Cancer**  
+  *Genes expressed at lower levels in cancer; taller bars = stronger evidence.*  
+
+**Dashboard layout:**  
+- Single sheet combining Volcano Plot and Top Gene bar charts.  
+- Each visualization includes clear titles and short captions for non-technical viewers.
 
 ---
 
