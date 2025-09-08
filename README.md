@@ -172,6 +172,16 @@ Right/top = significantly upregulated genes; left/top = significantly downregula
 
 ---
 
+## 9. Conclusions
+
+- The analysis confirmed clear differences in gene expression between breast cancer and normal tissue.  
+- **Upregulated genes** such as *collagen, type X, alpha 1 (COL10A1)*, *chemokine (C-X-C motif) ligand 11 (CXCL11)*, and *matrix metallopeptidase 1 (MMP1, interstitial collagenase)* are more active in cancer and may serve as potential tumor markers or oncogenes.  
+- **Downregulated genes** such as *alcohol dehydrogenase 1B (class I), beta polypeptide (ADH1B)*, *CD300 molecule-like family member 9 (CD300LG)*, and *fatty acid binding protein 4, adipocyte (FABP4)* are less active in cancer and may indicate potential tumor suppressors.  
+- The **Volcano Plot** provides an overview of all genes, while the **bar charts** highlight the most statistically significant candidates for further research.  
+- This workflow demonstrates a complete junior-level data analysis pipeline: from preprocessing and annotation to statistical testing and dashboard visualization.  
+
+---
+
 ## 📜 License
 
 This project is released under the MIT License.
