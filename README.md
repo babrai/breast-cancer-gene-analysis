@@ -166,10 +166,6 @@ Right/top = significantly upregulated genes; left/top = significantly downregula
 - **Top Downregulated Genes in Breast Cancer**  
   *Genes expressed at lower levels in cancer; taller bars = stronger evidence.*  
 
-**Dashboard layout:**  
-- Single sheet combining Volcano Plot and Top Gene bar charts.  
-- Each visualization includes clear titles and short captions for non-technical viewers.
-
 ---
 
 ## 9. Conclusions
